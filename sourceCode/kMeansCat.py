@@ -7,9 +7,11 @@ from sklearn.cluster import KMeans
 from sklearn.metrics import silhouette_samples, silhouette_score
 import numpy as np
 import csv
+import os
 
-inputFile = open('../data/movieLens/kMeansMovieData.csv')
-outputFile = open('../data/movieLens/MovieKMeans.dat', 'w')
+dir_path = os.path.dirname(os.path.realpath(__file__))
+inputFile = open(dir_path+'/../data/movieLens/kMeansMovieData.csv')
+outputFile = open(dir_path+'/../data/movieLens/MovieKMeans.dat', 'w')
 
 # Key value
 mapCat = {'key': -1, 'Adventure':0, 'Animation':1, 'Children':2, 'Comedy':3, 'Fantasy':4, 'Romance':5, 'Drama':6, 'Action':7, 'Crime':8, 'Thriller':9, 'Mystery':10, 'Horror':11, 'Sci-Fi':12, 'Documentary':13, 'IMAX':14, 'War':15, 'Musical':16, 'Western':17, 'Film-Noir':18, '(no genres listed)':19}
@@ -38,6 +40,7 @@ for i in range(len(dataID)):
 	outputFile.write('{0}::{1}\n'.format(dataID[i],kmeans.labels_[i]))
 	# print('{0}::{1}'.format(dataID[i],kmeans.labels_[i]))
 
+print ('Done')
 inputFile.close()
 outputFile.close()
 
